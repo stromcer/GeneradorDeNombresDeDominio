@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello Rigo with Vanilla.js</title>
+    <title>Domain name Generator</title>
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
@@ -12,18 +12,64 @@
     />
     <link rel="shortcut icon" href="./4geeks.ico" />
   </head>
-  <body>
-    <div class="container-fluid text-center">
-      <h1 class="mt-5">Hello Rigo!</h1>
-      <img src="./rigo-baby.jpg" />
-      <p class="alert alert-warning mt-4">
-        If this text is <b>not</b> centered and <b>yellow</b>, you probably have
-        an error
-      </p>
-      <div class="fixed-bottom p-4">
-        Made with ❤️ by
-        <a href="https://www.4geeksacademy.com">4Geeks Academy</a>
+  <body class="bg-dark text-light">
+    <div class="container-fluid">
+      <div class="container text-center my-5">
+        <h1>Generador de nombres de dominio</h1>
       </div>
+      <div id="formOptionsDiv" class="container formOptionsDiv">
+        <form name="formOptions" id="formOptions" class="d-flex flex-column">
+          <div class="d-flex flex-row align-middle">
+            <div
+              class="d-flex flex-column mx-2 bg-info border border-primary text-dark rounded p-2"
+            >
+              <div id="pronoumListForm" class="my-auto">
+                <!--CONTENIDO INSERTADO MEDIANTE JS-->
+              </div>
+            </div>
+            <div
+              class="d-flex flex-column mx-2 bg-info border border-primary text-dark rounded p-2"
+            >
+              <div id="adjetivesListForm" class="my-auto">
+                <!--CONTENIDO INSERTADO MEDIANTE JS-->
+              </div>
+            </div>
+            <div
+              class="d-flex flex-grow-1 mx-2 bg-info border border-primary text-dark rounded p-2"
+            >
+              <div class="my-auto flex-grow-1 text-center" id="nameForm">
+                <label for="productNames" class="form-label"
+                  >Inserte el nombre del producto (para insertar mas de un
+                  nombre separelo por comas)</label
+                >
+                <input
+                  id="productNames"
+                  type="text"
+                  class="form-control"
+                  placeholder="Ej: Nombre_1 ,  Nombre_2 , Nombre_3 , ..."
+                  aria-label="Nombre del producto"
+                />
+              </div>
+            </div>
+            <div
+              class="d-flex flex-column mx-2 bg-info border border-primary text-dark rounded p-2 "
+            >
+              <div id="extensionListForm" class="my-auto">
+                <!--CONTENIDO INSERTADO MEDIANTE JS-->
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center mt-5">
+            <input
+              type="submit"
+              class="btn btn-primary"
+              value="Generar dominios"
+            />
+          </div>
+        </form>
+      </div>
+
+      <div id="domainBox" class="container domainBox text-center mt-5"></div>
     </div>
   </body>
 </html>
