@@ -86,20 +86,48 @@ window.onload = function() {
         for (let nombre of objetoForm.names) {
           for (let extension of objetoForm.extensions) {
             domainBoxHtml += `
-            <p class="my-1 border bg-secondary border-secondary rounded">
-              <a
-                class="text-decoration-none text-light"
-                href="http://${pronombre}${adjetivo}${nombre}${extension}"
-                >
-                ${pronombre}${adjetivo}${nombre}${extension}  
-              </a>
-            </p>        
-          `;
+              <p class="my-1 border bg-secondary border-secondary rounded">
+                <a
+                  class="text-decoration-none text-light"
+                  href="http://${pronombre}${adjetivo}${nombre}${extension}"
+                  >
+                  ${pronombre}${adjetivo}${nombre}${extension}  
+                </a>
+              </p>        
+            `;
+            if (tryDomainNameHack(nombre, extension)) {
+              let compareExtension = extension.slice(1);
+              let hackedName = nombre.slice(
+                0,
+                nombre.length - compareExtension.length
+              );
+
+              domainBoxHtml += `
+                <p class="my-1 border bg-secondary border-secondary rounded">
+                  <a
+                    class="text-decoration-none text-light"
+                    href="http://${pronombre}${adjetivo}${hackedName}${extension}"
+                    >
+                    ${pronombre}${adjetivo}${hackedName}${extension}  
+                  </a>
+                </p>        
+              `;
+            }
           }
         }
       }
     }
     return domainBoxHtml;
+  }
+
+  function tryDomainNameHack(name, extension) {
+    if (
+      name.slice(name.length - (extension.length - 1)) ==
+      extension.slice(extension.length - 2)
+    ) {
+      return true;
+    }
+    return false;
   }
 
   let readValueFromId = searchedID => document.getElementById(searchedID).value;
