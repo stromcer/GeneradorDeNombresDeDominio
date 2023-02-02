@@ -122,8 +122,7 @@ window.onload = function() {
 
   function tryDomainNameHack(name, extension) {
     if (
-      name.slice(name.length - (extension.length - 1)) ==
-      extension.slice(extension.length - 2)
+      name.slice(name.length - (extension.length - 1)) == extension.slice(1)
     ) {
       return true;
     }
