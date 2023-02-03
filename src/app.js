@@ -21,7 +21,7 @@ window.onload = function() {
 
   let ALERT_MISSING_CHECKBOX = `
   <div class="alert alert-danger" role="alert">
-    POR FAVOR MARQUE AL MENOS UNA CASILLA DE CADA SECCION
+    POR FAVOR SELECCIONE AL MENOS UNA EXTENSION DE DOMINO
   </div>
   `;
 
@@ -51,11 +51,7 @@ window.onload = function() {
       extensions: listaExtensiones
     });
 
-    if (
-      listaPronombres.length == 0 ||
-      listaAdjetivos.length == 0 ||
-      listaExtensiones.length == 0
-    ) {
+    if (listaExtensiones.length == 0) {
       domainListHtml = ALERT_MISSING_CHECKBOX;
     }
     if (listaNombres[0] == "") {
@@ -81,6 +77,13 @@ window.onload = function() {
 
   function generateDomainList(objetoForm) {
     let domainBoxHtml = ``;
+    let domainBoxHtmlHack = ``;
+    if (!objetoForm.pronoums[0]) {
+      objetoForm.pronoums.push("");
+    }
+    if (!objetoForm.adjetives[0]) {
+      objetoForm.adjetives.push("");
+    }
     for (let pronombre of objetoForm.pronoums) {
       for (let adjetivo of objetoForm.adjetives) {
         for (let nombre of objetoForm.names) {
@@ -102,14 +105,14 @@ window.onload = function() {
                 nombre.length - compareExtension.length
               );
 
-              domainBoxHtml += `
-                <p class="my-1 border bg-secondary border-secondary rounded">
-                  <a
+              domainBoxHtmlHack += `
+                <p class="my-1 border bg-success border-success rounded">
+                  RECOMMENDED |-->  <a
                     class="text-decoration-none text-light"
                     href="http://${pronombre}${adjetivo}${hackedName}${extension}"
                     >
                     ${pronombre}${adjetivo}${hackedName}${extension}  
-                  </a>
+                  </a>  <--| RECOMMENDED
                 </p>        
               `;
             }
@@ -117,7 +120,7 @@ window.onload = function() {
         }
       }
     }
-    return domainBoxHtml;
+    return domainBoxHtmlHack + domainBoxHtml;
   }
 
   function tryDomainNameHack(name, extension) {
